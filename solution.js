@@ -227,17 +227,14 @@ var egl;
 						break;
 
 					default:
-						let a;
 						if (key == void 0) break;
 						if (uniforms[key]) {
-							a = uniforms[key];
-							a.func(a.location, value);
+							uniforms[key].func(uniforms[key].location, value);
 						}
 						if (attributes[key]) {
-							a = attributes[key];
-							gl.bindBuffer(gl.ARRAY_BUFFER, a.buffer);
+							gl.bindBuffer(gl.ARRAY_BUFFER, attributes[key].buffer);
 							gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(value), storage);
-							gl.vertexAttribPointer(a.location, value.length / iterations, gl.FLOAT, false, 0, 0);
+							gl.vertexAttribPointer(attributes[key].location, value.length / iterations, gl.FLOAT, false, 0, 0);
 						}
 						break;
 				}
